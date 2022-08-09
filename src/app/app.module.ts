@@ -4,33 +4,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './componente-ingreso/login/login.component';
-import { SignUpComponent } from './componente-ingreso/sign-up/sign-up.component';
-import { HomeComponent } from './componente-ingreso/home/home.component';
-import { MenuComponent } from './componentes-administrativos/menu/menu.component';
-import { CreacionVueloComponent } from './componentes-administrativos/creacion-vuelo/creacion-vuelo.component';
-import { CrearUsuarioPasajeroComponent } from './componentes-administrativos/crear-usuario-pasajero/crear-usuario-pasajero.component';
-import { AgregarPasajeroComponent } from './componentes-administrativos/agregar-pasajero/agregar-pasajero.component';
-import { CrearTripulacionComponent } from './componentes-administrativos/crear-tripulacion/crear-tripulacion.component';
-import { AbordajeComponent } from './componentes-administrativos/abordaje/abordaje.component';
+import { NopageFoundComponent } from './nopage-found/nopage-found.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { PagesComponent } from './pages/pages.component';
+import { AuthModule } from './auth/auth.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignUpComponent,
-    HomeComponent,
-    MenuComponent,
-    CreacionVueloComponent,
-    CrearUsuarioPasajeroComponent,
-    AgregarPasajeroComponent,
-    CrearTripulacionComponent,
-    AbordajeComponent
+    NopageFoundComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    AuthModule,
+    PagesModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
