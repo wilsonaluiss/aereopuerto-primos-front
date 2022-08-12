@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "aereopuerto-los-primos": {
+      "hosting": {
+        "aereopuerto-los-primos": [
+          "aereopuerto-los-primos"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "aereopuerto-los-primos"
+  }
+}

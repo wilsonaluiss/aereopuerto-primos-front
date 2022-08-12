@@ -23,7 +23,8 @@ import { VueloComponent } from './vuelo/vuelo.component';
   ],
   exports: [
     DashboardComponent,
-    PasajeroComponent
+    PasajeroComponent,
+    VueloComponent
   ]
 })
 export class PagesModule { }

@@ -10,9 +10,9 @@ const routes: Routes = [
   {
     path: 'dashboard', component: PagesComponent,
     children: [
-      { path: '', component: DashboardComponent },
-      { path: 'pasajero', component: PasajeroComponent },
-      { path: 'vuelo', component: VueloComponent },
+      { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
+      { path: 'pasajero', component: PasajeroComponent, data: { titulo: 'Pasajero' } },
+      { path: 'vuelo', component: VueloComponent, data: { titulo: 'Vuelo' } },
     ]
   },
 ];

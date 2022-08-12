@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
+
+declare var $: any;
 
 @Component({
   selector: 'app-sidebar',
@@ -11,11 +14,13 @@ export class SidebarComponent implements OnInit {
 
   MenuItems?: any[];
 
-  constructor(private sideBarServices: SidebarService, private router: Router) { 
+  constructor(private sideBarServices: SidebarService, private router: Router,private authSvc: AuthService) { 
     this.MenuItems = this.sideBarServices.menu;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    $('[data-widget="treeview"]').Treeview('init');
+
   }
 
   logout() {
