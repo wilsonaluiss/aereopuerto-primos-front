@@ -1,1 +1,225 @@
-<p>vuelo works!</p>
+<div class="container mt-4">
+    <mat-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="reservaFormGroup">
+            <form [formGroup]="reservaFormGroup">
+                <ng-template matStepLabel>Reservar Vuelo</ng-template>
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                </mat-form-field> -->
+                <div>
+                    <button mat-raised-button matStepperNext>Reservar Vuelo</button>
+                </div>
+            </form>
+        </mat-step>
+        <!--Escoger destino-->
+        <mat-step [stepControl]="vueloFormGroup" label="Escoge tu destino">
+            <form [formGroup]="vueloFormGroup">
+                <div class="container col-10">
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Elige tu destino</mat-label>
+                                <input matInput formControlName="secondCtrl" placeholder="Elige tu destiono" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Aereopuerto Salida</mat-label>
+                                <input matInput formControlName="secondCtrl" placeholder="Aereopuerto de Salida"
+                                    required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Aereopuerto llegada</mat-label>
+                                <input matInput formControlName="secondCtrl" placeholder="Aereopuerto de llegada"
+                                    required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Fecha de salida</mat-label>
+                                <input matInput [matDatepicker]="fechaSalida" formControlName="fechaSalida"
+                                    autocomplete="off" readonly>
+                                <mat-datepicker-toggle matSuffix [for]="fechaSalida"></mat-datepicker-toggle>
+                                <mat-datepicker #fechaSalida></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Fecha de llegada</mat-label>
+                                <input matInput [matDatepicker]="fechallegada" formControlName="fechallegada"
+                                    autocomplete="off" readonly>
+                                <mat-datepicker-toggle matSuffix [for]="fechallegada"></mat-datepicker-toggle>
+                                <mat-datepicker #fechallegada></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
+                    <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button>
+                    <button mat-raised-button matStepperNext [disabled]="vueloFormGroup.invalid">Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+        <!--Vuelos disponibles-->
+        <mat-step [stepControl]="reservaFormGroup">
+            <form [formGroup]="reservaFormGroup">
+                <ng-template matStepLabel>Vuelos Disponibles</ng-template>
+
+                <mat-accordion multi>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*">
+                            <mat-panel-title class="centrado">
+                                <h3 class="text-sat font-weight-bold m-2">
+                                    test
+                                </h3>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="row mt-2">
+                            <div class="col-sm-4 p-3">
+                                <mat-card class="parent">
+                                    <div class="child">
+                                        <mat-icon>date_range</mat-icon>
+                                    </div>
+                                    <h3 class="font-weight-bold m-2">
+                                        Fecha de Salida
+                                    </h3>
+                                    <h4 class="mx-2">
+                                        12/12/2019
+                                    </h4>
+                                </mat-card>
+                            </div>
+                            <div class="col-sm-4 p-3">
+                                <mat-card class="parent">
+                                    <div class="child">
+                                        <mat-icon>date_range</mat-icon>
+                                    </div>
+                                    <h3 class="font-weight-bold m-2">
+                                        Fecha Llegada
+                                    </h3>
+                                    <h4 class="mx-2">
+                                        12/12/2019
+                                    </h4>
+                                </mat-card>
+                            </div>
+                            <div class="col-sm-4 p-3">
+                                <mat-card class="parent">
+                                    <div class="child">
+                                        <mat-icon>payments</mat-icon>
+                                    </div>
+                                    <h3 class="font-weight-bold m-2">
+                                        Precio
+                                    </h3>
+                                    <h4 class="mx-2">
+                                        Q2500.00
+                                    </h4>
+                                </mat-card>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 p-3">
+                                <mat-card class="parent">
+                                    <div class="child">
+                                        <mat-icon>flight_takeoff</mat-icon>
+                                    </div>
+                                    <h3 class="font-weight-bold m-2">
+                                        Aereolinea
+                                    </h3>
+                                    <h4 class="mx-2">
+                                        12/12/2019
+                                    </h4>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+
+                <div class="mt-4">
+                    <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
+
+                    <button mat-raised-button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Ver detalle
+                      </button>
+
+                    <button mat-raised-button matStepperNext >Seleccionar</button>
+                </div>
+            </form>
+            <!-- vuelo -->
+        </mat-step><mat-step [stepControl]="vueloFormGroup" label="Escoge tu destino">
+            <form [formGroup]="vueloFormGroup">
+                <div class="container col-10">
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Seleccionar clase del vuelo</mat-label>
+                                <input matInput formControlName="secondCtrl" placeholder="Elige tu destiono" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Seleccionar asiento</mat-label>
+                                <input matInput formControlName="secondCtrl" placeholder="Aereopuerto de Salida"
+                                    required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Cantidad de maletas</mat-label>
+                                <input matInput formControlName="secondCtrl" placeholder="Elige tu destiono" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Total</mat-label>
+                                <input matInput formControlName="secondCtrl" placeholder="Aereopuerto de Salida"
+                                    required>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div>
+                    <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
+                    <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button>
+                    <button mat-raised-button matStepperNext >Guardar</button>
+                </div>
+            </form>
+        </mat-step>
+    </mat-stepper>
+</div>
+
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Datos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>

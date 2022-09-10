@@ -11,7 +11,7 @@
                 <form (ngSubmit)="login()" [formGroup]="loginForm">
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" formControlName="email" placeholder="Email"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope" style="color: rgb(48, 37, 37);"></span>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" class="form-control" formControlName="password" #password
-                            placeholder="Password" required>
+                            placeholder="Password" >
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <a  style="color: rgb(48, 37, 37); cursor: pointer"><i

@@ -6,6 +6,11 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { VueloComponent } from './vuelo/vuelo.component';
+import { AdministracionComponent } from './administracion/administracion.component';
+import { AereopuertosComponent } from './aereopuertos/aereopuertos.component';
+import { AereolineasComponent } from './aereolineas/aereolineas.component';
+import { AvionesComponent } from './aviones/aviones.component';
+import { MaterialModule } from '../comunes/material-module';
 
 
 
@@ -14,12 +19,18 @@ import { VueloComponent } from './vuelo/vuelo.component';
     DashboardComponent,
     PasajeroComponent,
     PagesComponent,
-    VueloComponent
+    VueloComponent,
+    AdministracionComponent,
+    AereopuertosComponent,
+    AereolineasComponent,
+    AvionesComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
+
   ],
   exports: [
     DashboardComponent,

@@ -13,9 +13,11 @@ declare var $: any;
 export class SidebarComponent implements OnInit {
 
   MenuItems?: any[];
+  AdminItems?: any[];
 
   constructor(private sideBarServices: SidebarService, private router: Router,private authSvc: AuthService) { 
     this.MenuItems = this.sideBarServices.menu;
+    this.AdminItems = this.sideBarServices.administracion;
   }
 
   ngOnInit() {

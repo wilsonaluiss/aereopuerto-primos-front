@@ -5,6 +5,10 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PasajeroComponent } from './pasajero/pasajero.component';
 import { VueloComponent } from './vuelo/vuelo.component';
+import { AdministracionComponent } from './administracion/administracion.component';
+import { AereolineasComponent } from './aereolineas/aereolineas.component';
+import { AereopuertosComponent } from './aereopuertos/aereopuertos.component';
+import { AvionesComponent } from './aviones/aviones.component';
 
 const routes: Routes = [
   {
@@ -13,6 +17,10 @@ const routes: Routes = [
       { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
       { path: 'pasajero', component: PasajeroComponent, data: { titulo: 'Pasajero' } },
       { path: 'vuelo', component: VueloComponent, data: { titulo: 'Vuelo' } },
+      { path: 'administracion', component: AdministracionComponent, data: { titulo: 'Administración' } },
+      { path: 'aereolineas', component: AereolineasComponent, data: { titulo: 'Aereolineas' } },
+      { path: 'aereopuertos', component: AereopuertosComponent, data: { titulo: 'Aereopuertos' } },
+      { path: 'aviones', component: AvionesComponent, data: { titulo: 'Aviones' } },
     ]
   },
 ];

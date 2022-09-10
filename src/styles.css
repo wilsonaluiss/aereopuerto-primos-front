@@ -6,3 +6,12 @@
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
 
 
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* 
+.mat-stepper-horizontal, .mat-stepper-vertical {
+    background-color: #7cbde2;
+}
+ */

@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm = this.fb.group({
-    email: ['', [Validators.required],[Validators.email]],
+    email: ['', [Validators.required], [Validators.email]],
     password: ['', [Validators.required]],
     remember: [false]
 
@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
     try {
       await this.authSvc.login(this.loginForm.value.email, this.loginForm.value.password).then((res) => {
         console.log(res);
-      this.router.navigateByUrl('dashboard');
+        this.router.navigateByUrl('dashboard');
 
-    })
-  } catch (error) {
+      })
+    } catch (error) {
       console.log(error);
     }
 
