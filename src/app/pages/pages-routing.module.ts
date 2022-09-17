@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
       { path: 'pasajero', component: PasajeroComponent, data: { titulo: 'Pasajero' } },
       { path: 'vuelo', component: VueloComponent, data: { titulo: 'Vuelo' } },
-      { path: 'administracion', component: AdministracionComponent, data: { titulo: 'Administración' } },
+      { path: 'administracion', component: AdministracionComponent, data: { titulo: 'Usuarios' } },
       { path: 'aereolineas', component: AereolineasComponent, data: { titulo: 'Aereolineas' } },
       { path: 'aereopuertos', component: AereopuertosComponent, data: { titulo: 'Aereopuertos' } },
       { path: 'aviones', component: AvionesComponent, data: { titulo: 'Aviones' } },

@@ -11,6 +11,11 @@ import { AereopuertosComponent } from './aereopuertos/aereopuertos.component';
 import { AereolineasComponent } from './aereolineas/aereolineas.component';
 import { AvionesComponent } from './aviones/aviones.component';
 import { MaterialModule } from '../comunes/material-module';
+import { FormsModule } from '@angular/forms';
+import { ServiceService } from '../services/service.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -23,19 +28,26 @@ import { MaterialModule } from '../comunes/material-module';
     AdministracionComponent,
     AereopuertosComponent,
     AereolineasComponent,
-    AvionesComponent
+    AvionesComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    HttpClientModule,
+    MatInputModule,
+    MatPaginatorModule
+    
+
 
   ],
   exports: [
     DashboardComponent,
     PasajeroComponent,
     VueloComponent
-  ]
+  ],
+  providers: [ServiceService],
 })
 export class PagesModule { }

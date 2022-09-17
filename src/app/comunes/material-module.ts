@@ -47,7 +47,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-//import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSpinnerModule } from 'ngx-spinner';
 //import { MatTimepickerModule } from 'mat-timepicker';
 
 
@@ -123,7 +123,7 @@ import { FormsModule } from '@angular/forms';
     MatExpansionModule,
     MatSelectModule,
     MatProgressBarModule,
-    //NgxSpinnerModule,
+    NgxSpinnerModule,
     MatDividerModule,
     CommonModule,
     MatFormFieldModule,
