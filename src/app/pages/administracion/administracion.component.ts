@@ -14,15 +14,8 @@ interface Puesto {
   viewValue: string;
 }
 
-interface Car {
-  value: string;
-  viewValue: string;
-}
 
-interface Food {
-  value: string;
-  viewValue: string;
-}
+
 @Component({
   selector: 'app-administracion',
   templateUrl: './administracion.component.html',
@@ -30,10 +23,17 @@ interface Food {
 })
 export class AdministracionComponent implements OnInit {
 
-  selectedValue: string;
-  selectedCar: string;
+  
 
-  displayedColumnsUsuarios: string[] = ['codigo_usuario', 'nombre_usuario', 'usuario', 'contrasena', 'rol', 'codigo_aereopuerto', 'puesto', 'estado', 'acciones'];
+  displayedColumnsUsuarios: string[] = [
+    'idUsuario',
+    'nombreUsuario',
+    'idAereopuerto',
+    'telefonoUsuario',
+    'direccionUsuario',
+    'estadoUsuario',
+    'puesto',
+    'acciones'];
   dataSourceUsuarios: MatTableDataSource<Roles>;
   //hide = true;
   editting = false;
@@ -41,22 +41,14 @@ export class AdministracionComponent implements OnInit {
   id: number;
 
   puestos: Puesto[] = [
-    {value: '1', viewValue: 'Administrador'},
-    {value: '2', viewValue: 'Piloto'},
-    {value: '3', viewValue: 'Azafata'},
+    { value: '1', viewValue: 'Administrador' },
+    { value: '2', viewValue: 'Piloto' },
+    { value: '3', viewValue: 'Azafata' },
   ];
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
-  ];
 
-  cars: Car[] = [
-    {value: 'volvo', viewValue: 'Volvo'},
-    {value: 'saab', viewValue: 'Saab'},
-    {value: 'mercedes', viewValue: 'Mercedes'},
-  ];
+
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -66,32 +58,31 @@ export class AdministracionComponent implements OnInit {
   rolesUsuario: Roles;
 
   //roles : any[] = [];
-  roles: Roles[];
-  usuarioRoles: Roles = new Roles();
+  /* roles: Roles[];
+  usuarioRoles: Roles = new Roles(); */
   constructor(
     private service: ServiceService,
     private router: Router,
     private spinner: NgxSpinnerService,
     private formBuilder: FormBuilder) {
     this.informacionCreacionFormGroup = this.formBuilder.group({
-      codigo_usuario: [null, Validators.nullValidator],
-      nombre_usuario: [null, Validators.required],
-      usuario: [null, Validators.required],
+      idUsuario: [''],
+      nombreUsuario: [null, Validators.required],
       contrasena: [null, Validators.required],
-      rol: [null, Validators.required],
-      codigo_aereopuerto: [null, Validators.required],
-      puesto: [null, Validators.required],
-      estado: [true, Validators.required],
+      telefonoUsuario: [null, Validators.required],
+      direccionUsuario: [null, Validators.required],
+      estadoUsuario: [true, Validators.required],
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.spinner.show();
-    this.service.getRoles().toPromise().then(data => {
+    this.service.getData<Roles[]>(this.service.BASE_URL_AEROPUERTO, 'obtenerUsuarios/todos').toPromise().then(data => {
 
       this.dataSourceUsuarios = new MatTableDataSource(data);
       this.dataSourceUsuarios.sort = this.sort;
       this.spinner.hide();
+      console.log('data' + data);
       console.table(data);
     }
     )
@@ -102,69 +93,95 @@ export class AdministracionComponent implements OnInit {
     this.dataSourceUsuarios.filter = filterValue.trim().toLowerCase();
   }
 
-  guardarUsuario() {
-    if (this.informacionCreacionFormGroup.invalid) return;
-    const rol = this.informacionCreacionFormGroup.value;
-    const nuevoRol: Roles = {
-      codigo_usuario: rol.codigo_usuario,
-      nombre_usuario: rol.nombre_usuario,
-      usuario: rol.usuario,
-      contrasena: rol.contrasena,
-      rol: rol.rol,
-      codigo_aereopuerto: rol.codigo_aereopuerto,
-      puesto: rol.puesto,
-      estado: (rol.estado === true ? 'Activo' : 'Inactivo')
-    };
+  limpiar() {
+    this.informacionCreacionFormGroup.reset();
+  }
 
-    this.service.crearRol(nuevoRol).subscribe(
-      (data) => {
+  
+  guardarUsuario() {
+    this.spinner.show();
+    try {
+      const nuevoRol: any = {
+        nombreUsuario: this.informacionCreacionFormGroup.get('nombreUsuario').value,
+        contrasena: this.informacionCreacionFormGroup.get('contrasena').value,
+        telefonoUsuario: this.informacionCreacionFormGroup.get('telefonoUsuario').value,
+        direccionUsuario: this.informacionCreacionFormGroup.get('direccionUsuario').value,
+        estadoUsuario: this.informacionCreacionFormGroup.get('estadoUsuario').value ? 'Activo' : 'Inactivo',
+        usuarioCrea: 'admin',
+        usuarioModifica: 'admin',
+        idAereopuerto: 1,
+        idRol: 1,
+      }
+      console.log(nuevoRol);
+      this.service.postData(this.service.BASE_URL_AEROPUERTO, 'creaRol',nuevoRol).toPromise().then(data => {
+        console.log('datos a enviar',data);
+        this.spinner.hide();
+        this.limpiar();
         Swal.fire({
-          titleText: `Usuario creado con exito`,
+          titleText: `Se ha almacenado la información con éxito.`,
+          icon: 'success',
+          showCloseButton: true,
+          showConfirmButton: false
+        });
+      });
+    } catch (error) {
+      console.log(error);
+      this.spinner.hide();
+      return Swal.fire({
+        titleText: `Error al registrar datos, por favor intente en otro momento.`,
+        icon: 'error',
+        showCloseButton: true,
+        showConfirmButton: false
+      });
+      
+    }
+
+  }
+
+  
+
+
+ /*  editarUsuario() {
+      const datosEditar: any = {
+        nombreUsuario: this.informacionCreacionFormGroup.get('nombreUsuario').value,
+        contrasena: this.informacionCreacionFormGroup.get('contrasena').value,
+        telefonoUsuario: this.informacionCreacionFormGroup.get('telefonoUsuario').value,
+        direccionUsuario: this.informacionCreacionFormGroup.get('direccionUsuario').value,
+        estadoUsuario: this.informacionCreacionFormGroup.get('estadoUsuario').value ? 'Activo' : 'Inactivo',
+      }
+      console.log('datos a actualizar',datosEditar);
+      this.service.putData(this.service.BASE_URL_AEROPUERTO, 'actualizaRol',this.id,datosEditar).toPromise().then(data => {
+        console.log('datos a enviar',data);
+        this.spinner.hide();
+        this.limpiar();
+        Swal.fire({
+          titleText: `Se ha almacenado la información con éxito.`,
+          icon: 'success',
+          showCloseButton: true,
+          showConfirmButton: false
+        });
+      });
+  } */
+
+  /* Actualizar(roles: Roles) {
+    console.log(roles);
+    this.service.editarRol(roles,this.id)
+      .subscribe(data => {
+        
+        Swal.fire({
+          titleText: `Se actualizo el usuario con exito`,
           icon: 'success',
           showCloseButton: true,
           showConfirmButton: false,
           position: 'top',
         });
         this.router.navigate(['/dashboard']);
-      }
-    )
-
-
-    console.log(nuevoRol);
-  }
-
-
-  editarUsuario(rol: Roles) {
-    localStorage.setItem("codigo_usuario", rol.codigo_usuario.toString());
-    let codigo_usuario = localStorage.getItem("codigo_usuario");
-    this.id = (Number(codigo_usuario));
-    console.log(codigo_usuario);
-    this.service.obtnenerRol(Number(codigo_usuario))
-      .subscribe(data => {
-        this.informacionCreacionFormGroup.get('codigo_usuario')?.setValue(data.codigo_usuario);
-        this.informacionCreacionFormGroup.get('nombre_usuario')?.setValue(data.nombre_usuario);
-        this.informacionCreacionFormGroup.get('usuario')?.setValue(data.usuario);
-        this.informacionCreacionFormGroup.get('contrasena')?.setValue(data.contrasena);
-        this.informacionCreacionFormGroup.get('rol')?.setValue(data.rol);
-        this.informacionCreacionFormGroup.get('codigo_aereopuerto')?.setValue(data.codigo_aereopuerto);
-        this.informacionCreacionFormGroup.get('puesto')?.setValue(data.puesto);
-        this.informacionCreacionFormGroup.get('estado')?.setValue(data.estado === 'Activo' ? true : false);
-        console.log(data);
-      })
-  }
-
-  Actualizar(roles: Roles) {
-    console.log(roles);
-    this.service.editarRol(roles,this.id)
-      .subscribe(data => {
-        
-        alert("Se Actualizo con Exito...!!!");
         
       })
-  }
+  } */
 
 
-  eliminarUsuario() {
+  /* eliminarUsuario() {
     this.service.eliminarRol(this.id).subscribe(
       (data) => {
         Swal.fire({
@@ -177,6 +194,6 @@ export class AdministracionComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       }
     )
-  }
+  } */
 
 }

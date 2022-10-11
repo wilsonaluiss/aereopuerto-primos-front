@@ -38,8 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     HttpClientModule,
     MatInputModule,
-    MatPaginatorModule
-    
+    MatPaginatorModule,
 
 
   ],
