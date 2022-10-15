@@ -19,11 +19,12 @@ export class SidebarService {
             titulo: 'Menu',
             icono: 'fa fa-plane',
             submenu: [
-                { titulo: 'Pasajero', url: 'pasajero', icono: 'fab fa-creative-commons-by' },
-                this.roles == 8?{ titulo: 'Abordaje', url: 'abordaje', icono: 'fa fa-child' } : {},
+                { titulo: 'Reservar Vuelo', url: 'pasajero', icono: 'fab fa-creative-commons-by' },
+                /* this.roles == 8?{ titulo: 'Abordaje', url: 'abordaje', icono: 'fa fa-child' } : {}, */
+                { titulo: 'Abordaje', url: 'abordaje', icono: 'fa fa-child' } ,
                 { titulo: 'Consultas', url: 'consultas', icono: 'fa fa-search' },
                 { titulo: 'Vuelo', url: 'vuelo', icono: 'far fa-paper-plane' },
-                this.roles == 8? { titulo: 'Tripulación', url: 'tripulacion', icono: 'fas fa-user-friends' }: this.menuvacio
+                { titulo: 'Tripulación', url: 'tripulacion', icono: 'fas fa-user-friends' },
 
             ]
         }

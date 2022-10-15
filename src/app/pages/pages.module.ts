@@ -16,6 +16,7 @@ import { ServiceService } from '../services/service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { PaseComponent } from './vuelo/pase/pase.component';
 
 
 
@@ -29,6 +30,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     AereopuertosComponent,
     AereolineasComponent,
     AvionesComponent,
+    PaseComponent,
   ],
   imports: [
     CommonModule,

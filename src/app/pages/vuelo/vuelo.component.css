@@ -1,11 +1,10 @@
 .mat-stepper-horizontal {
-    margin-top: 8px;
-  }
-  
-  .mat-form-field {
-    margin-top: 16px;
-  }
-  
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
   .centrado{
     display: inline;
     text-align: center;
@@ -31,3 +30,48 @@
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 } */
+
+.asientoStatus {
+  line-height: 0;
+  width: 0;
+  height: 0;
+  border-radius: 2px;
+  border: 30px solid black;
+  border-color: #0E893D;
+  color: white;
+}
+
+.asientoStatus:hover {
+  border-color: #00184B;
+  cursor: pointer;
+}
+
+.asientoLibre {
+  line-height: 0;
+  width: 0;
+  height: 0;
+  border-radius: 2px;
+  border: 30px solid black;
+  border-color: #3ac56f;
+  color: white;
+}
+
+.asientoLibre:hover {
+  border-color: #a6b9e2;
+  cursor: pointer;
+}
+
+.asientoOcupado {
+  line-height: 0;
+  width: 0;
+  height: 0;
+  border-radius: 2px;
+  border: 30px solid black;
+  border-color: rgb(245, 6, 6);
+  color: white;
+}
+
+.asientoOcupado:hover {
+  border-color: #a6b9e2;
+  cursor: pointer;
+}

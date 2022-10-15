@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GlobalVariable } from 'src/app/auth/login/login.component';
-import { AuthService } from 'src/app/services/auth.service';
 import { SidebarService } from 'src/app/services/sidebar.service';
 
 declare var $: any;
@@ -34,7 +33,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    $('[data-widget="treeview"]').Treeview('init');
+    //$('[data-widget="treeview"]').Treeview('init');
     this.roles = (JSON.parse(localStorage.getItem('formDataFilter')));
     /* console.log('datos sidebar :', this.roles.BASE_ROL) */
   }

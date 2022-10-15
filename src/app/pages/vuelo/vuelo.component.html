@@ -20,42 +20,38 @@
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Elige tu destino</mat-label>
-                                <input matInput formControlName="secondCtrl" placeholder="Elige tu destiono" required>
+                                <input matInput formControlName="origen" placeholder="Elige tu destino" required>
                             </mat-form-field>
                         </div>
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Aereopuerto Salida</mat-label>
-                                <input matInput formControlName="secondCtrl" placeholder="Aereopuerto de Salida"
-                                    required>
+                                <input matInput formControlName="destino" placeholder="Aereopuerto de Salida" required>
                             </mat-form-field>
                         </div>
-                        <div class="col">
+                        <!-- <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Aereopuerto llegada</mat-label>
-                                <input matInput formControlName="secondCtrl" placeholder="Aereopuerto de llegada"
-                                    required>
+                                <input matInput formControlName="" placeholder="Aereopuerto de llegada" required>
                             </mat-form-field>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="row">
                         <div class="col">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Fecha de salida</mat-label>
-                                <input matInput [matDatepicker]="fechaSalida" formControlName="fechaSalida"
-                                    autocomplete="off" readonly>
-                                <mat-datepicker-toggle matSuffix [for]="fechaSalida"></mat-datepicker-toggle>
-                                <mat-datepicker #fechaSalida></mat-datepicker>
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Hora Salida</mat-label>
+                                <input matInput type="datetime-local" placeholder="start date"
+                                    formControlName="horaSalida">
                             </mat-form-field>
                         </div>
                         <div class="col-6">
                             <mat-form-field appearance="fill">
                                 <mat-label>Fecha de llegada</mat-label>
-                                <input matInput [matDatepicker]="fechallegada" formControlName="fechallegada"
+                                <input matInput type="datetime-local" [matDatepicker]="horaLlegada" formControlName="horaLlegada"
                                     autocomplete="off" readonly>
-                                <mat-datepicker-toggle matSuffix [for]="fechallegada"></mat-datepicker-toggle>
-                                <mat-datepicker #fechallegada></mat-datepicker>
+                                <mat-datepicker-toggle matSuffix [for]="horaLlegada"></mat-datepicker-toggle>
+                                <mat-datepicker #horaLlegada></mat-datepicker>
                             </mat-form-field>
                         </div>
                     </div>
@@ -64,7 +60,7 @@
 
                 <div>
                     <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
-                    <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button>
+                    <!-- <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button> -->
                     <button mat-raised-button matStepperNext [disabled]="vueloFormGroup.invalid">Siguiente</button>
                 </div>
             </form>
@@ -148,27 +144,27 @@
 
                     <button mat-raised-button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         Ver detalle
-                      </button>
+                    </button>
 
-                    <button mat-raised-button matStepperNext >Seleccionar</button>
+                    <button mat-raised-button matStepperNext>Seleccionar</button>
                 </div>
             </form>
             <!-- vuelo -->
-        </mat-step><mat-step [stepControl]="vueloFormGroup" label="Escoge tu destino">
-            <form [formGroup]="vueloFormGroup">
-                <div class="container col-10">
+        </mat-step>
+        <mat-step [stepControl]="asientoForm" label="Informacion del vuelo">
+            <form [formGroup]="asientoForm">
+                <!-- <div class="container col-10">
                     <div class="row">
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Seleccionar clase del vuelo</mat-label>
-                                <input matInput formControlName="secondCtrl" placeholder="Elige tu destiono" required>
+                                <input matInput formControlName="destino" placeholder="Elige tu destino" required>
                             </mat-form-field>
                         </div>
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Seleccionar asiento</mat-label>
-                                <input matInput formControlName="secondCtrl" placeholder="Aereopuerto de Salida"
-                                    required>
+                                <input matInput formControlName="ubicacionAsiento" placeholder="Aereopuerto de Salida" required>
                             </mat-form-field>
                         </div>
                     </div>
@@ -177,24 +173,179 @@
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Cantidad de maletas</mat-label>
-                                <input matInput formControlName="secondCtrl" placeholder="Elige tu destiono" required>
+                                <input matInput formControlName="" placeholder="Cantidad de maletas" required>
                             </mat-form-field>
                         </div>
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Total</mat-label>
-                                <input matInput formControlName="secondCtrl" placeholder="Aereopuerto de Salida"
-                                    required>
+                                <input matInput formControlName="total" placeholder="Total" required>
                             </mat-form-field>
                         </div>
                     </div>
 
-                </div>
+                </div> -->
+
+                <div class="row d-flex justify-content-center">
+                    <div>
+                      <fieldset>
+                        <legend>Elija su asiento:</legend>
+                        <div class="asiento-group">
+                          <table id="otro" type="checkbox" class="asientos-tab" cellpadding="1" cellspacing="1"
+                            height="278" width="700">
+                            <tbody>
+                              <tr>
+                                <td style="text-align: center;">
+                                </td>
+                                <td id="A" style="text-align: center;" class="cuadrante">A
+  
+                                  <div class='asientoLibre' id="asientoA0" (click)="asientoStatus($event)">1</div>
+                                </td>
+                                <td id="B" style="text-align: center;">B
+                                  <div class='asientoLibre' id="asientoB1" (click)="asientoStatus($event)">1</div>
+                                </td>
+                                <td id="C" style="text-align: center;"> C
+                                  <div class='asientoLibre' id="asientoC1" (click)="asientoStatus($event)">1</div>
+                                </td>
+                                <td id="D" style="text-align: center;">D
+                                  <div class='asientoLibre' id="asientoD1" (click)="asientoStatus($event)">1</div>
+                                </td>
+                                <td id="E" style="text-align: center;">E
+                                  <div class='asientoLibre' id="asientoE1" (click)="asientoStatus($event)">1</div>
+                                </td>
+                                <td id="F" style="text-align: center;">F
+                                  <div class='asientoLibre' id="asientoF1" (click)="asientoStatus($event)">1</div>
+                                </td>
+  
+                              </tr>
+                              <tr>
+                                <td style="text-align: center;">
+  
+                                </td>
+                                <td id="A" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoA2" (click)="asientoStatus($event)">2</div>
+                                </td>
+                                <td id="B" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoB2" (click)="asientoStatus($event)">2</div>
+                                </td>
+                                <td id="C" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoC2" (click)="asientoStatus($event)">2</div>
+                                </td>
+                                <td id="D" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoD2" (click)="asientoStatus($event)">2</div>
+                                </td>
+                                <td id="E" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoE2" (click)="asientoStatus($event)">2</div>
+                                </td>
+                                <td id="F" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoF2" (click)="asientoStatus($event)">2</div>
+                                </td>
+  
+                              </tr>
+                              <tr>
+                                <td style="text-align: center;">
+  
+                                </td>
+                                <td id="A" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoA3" (click)="asientoStatus($event)">3</div>
+                                </td>
+                                <td id="B" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoB3" (click)="asientoStatus($event)">3</div>
+                                </td>
+                                <td id="C" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoC3" (click)="asientoStatus($event)">3</div>
+                                </td>
+                                <td id="D" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoD3" (click)="asientoStatus($event)">3</div>
+                                </td>
+                                <td id="E" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoE3" (click)="asientoStatus($event)">3</div>
+                                </td>
+                                <td id="F" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoF3" (click)="asientoStatus($event)">3</div>
+                                </td>
+  
+                              </tr>
+                              <tr>
+                                <td style="text-align: center;">
+                                </td>
+                                <td id="A" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoA4" (click)="asientoStatus($event)">4</div>
+                                </td>
+                                <td id="B" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoB4" (click)="asientoStatus($event)">4</div>
+                                </td>
+                                <td id="C" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoC4" (click)="asientoStatus($event)">4</div>
+                                </td>
+                                <td id="D" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoD4" (click)="asientoStatus($event)">4</div>
+                                </td>
+                                <td id="E" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoE4" (click)="asientoStatus($event)">4</div>
+                                </td>
+                                <td id="F" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoF4" (click)="asientoStatus($event)">4</div>
+                                </td>
+  
+                              </tr>
+                              <tr>
+                                <td style="text-align: center;">
+                                </td>
+                                <td id="A" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoA5" (click)="asientoStatus($event)">5</div>
+                                </td>
+                                <td id="B" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoB5" (click)="asientoStatus($event)">5</div>
+                                </td>
+                                <td id="C" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoC5" (click)="asientoStatus($event)">5</div>
+                                </td>
+                                <td id="D" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoD5" (click)="asientoStatus($event)">5</div>
+                                </td>
+                                <td id="E" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoE5" (click)="asientoStatus($event)">5</div>
+                                </td>
+                                <td id="F" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoF5" (click)="asientoStatus($event)">5</div>
+                                </td>
+  
+                              </tr>
+                              <tr>
+                                <td style="text-align: center;">
+                                </td>
+                                <td id="A" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoA6" (click)="asientoStatus($event)">6</div>
+                                </td>
+                                <td id="B" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoB6" (click)="asientoStatus($event)">6</div>
+                                </td>
+                                <td id="C" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoC6" (click)="asientoStatus($event)">6</div>
+                                </td>
+                                <td id="D" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoD6" (click)="asientoStatus($event)">6</div>
+                                </td>
+                                <td id="E" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoE6" (click)="asientoStatus($event)">6</div>
+                                </td>
+                                <td id="F" style="text-align: center;">
+                                  <div class='asientoLibre' id="asientoF6" (click)="asientoStatus($event)">6</div>
+                                </td>
+  
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
 
                 <div>
-                    <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
-                    <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button>
-                    <button mat-raised-button matStepperNext >Guardar</button>
+                    <button mat-raised-button class="mr-1 mt-3" matStepperPrevious>Regresar</button>
+                    <!-- <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button> -->
+                    <button mat-raised-button matStepperNext (click)="GuardarDatos(vueloFormGroup.value,stepper)" >Guardar</button>
                 </div>
             </form>
         </mat-step>
@@ -204,22 +355,23 @@
 
 <!-- Button trigger modal -->
 
-  
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Datos</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Datos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Ok</button>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Ok</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
