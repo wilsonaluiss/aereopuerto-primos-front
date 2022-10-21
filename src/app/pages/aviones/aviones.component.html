@@ -1,24 +1,162 @@
-<div class="container mt-3">
-    <div class="card">
-        <div class="card-header">
-            <h3 class="text-center">Aviones</h3>
-            <div class="card-body">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Codigo avion</th>
-                            <th>Numero placa</th>
-                            <th>Capacidad <br> Asientos </th>
-                            <th>Dimensiones</th>
-                            <th>AereoLinea que <br> Asignado</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                </table>
+<div class="card-body">
+
+    <div class="row my-3 col-2">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Agregar
+        </button>
+    </div>
+
+    <mat-card>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filtro</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filtro de busqueda" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSourceAviones" matSort>
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="idAvion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idAvion}} </td>
+                </ng-container>
+
+                <!-- nombre usuario -->
+                <ng-container matColumnDef="noPlaca">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Numero de Placa </th>
+                    <td mat-cell *matCellDef="let element"> {{element.noPlaca}} </td>
+                </ng-container>
+
+
+                <!-- Codigo Aereopuerto -->
+                <ng-container matColumnDef="capacidadAsientos">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Capacidad Asientos </th>
+                    <td mat-cell *matCellDef="let element"> {{element.capacidadAsientos}} </td>
+                </ng-container>
+
+                <!-- Puesto -->
+                <ng-container matColumnDef="estadoAvion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> estado </th>
+                    <td mat-cell *matCellDef="let element"> {{element.estadoAvion}} </td>
+                </ng-container>
+
+                <!-- Estado -->
+                <ng-container matColumnDef="dimensiones">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Dimensiones </th>
+                    <td mat-cell *matCellDef="let element"> {{element.dimensiones}} </td>
+                </ng-container>
+
+                <!-- Telefono -->
+                <ng-container matColumnDef="idAereolinea">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Aereolinea </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idAereolinea}} </td>
+                </ng-container>
+
+                <!-- Direccion -->
+                <ng-container matColumnDef="idAereopuerto">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Aereopuerto </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idAereopuerto}} </td>
+                </ng-container>
+
+                <!-- Estado Column -->
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Acción </th>
+                    <td mat-cell *matCellDef="let element" class="acciones">
+                        <span class="material-icons" title="Modificar" style="cursor: pointer;" data-toggle="modal"
+                            data-target="#staticBackdrop2">
+                            edit
+                        </span>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsAviones"></tr>
+                <tr mat-row *matRowDef="let element; columns: displayedColumnsAviones;"></tr>
+
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+
+    </mat-card>
+
+</div>
+
+
+<!-- Agregar -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticAdminLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticAdminLabel">Agregar avion</h5>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body">
+                <div class="main-content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header card-header-primary">
+                                        <h4 class="card-title">Aviones </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form [formGroup]="avionesFormGroup">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input formControlName="noPlaca" matInput
+                                                            placeholder="Numero de placa" type="text">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input formControlName="capacidadAsientos" matInput
+                                                            placeholder="Capacidad de asientos" type="text">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="inputPassword" class="col-sm-4 col-form-label">Estado</label>
+                                                    <mat-slide-toggle color="primary" #estado
+                                                        class="margenObservaciones" formControlName="estadoAvion">
+
+                                                        {{estado.checked ? 'Activo' : 'Inactivo'}}
+
+                                                    </mat-slide-toggle>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <mat-form-field class="example-full-width">
+                                                        <input formControlName="dimensiones" matInput
+                                                            placeholder="Dimensiones" type="text">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <!-- <button mat-raised-button type="submit"
+                                                class="btn btn-danger pull-right">Regresar</button> -->
+                                            <button mat-raised-button type="button"
+                                                class="btn btn-success pull-right" data-bs-dismiss="modal" (click)="guardarAvion()">Crear</button>
+
+                                            <!-- <div class="clearfix"></div> -->
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
     </div>
