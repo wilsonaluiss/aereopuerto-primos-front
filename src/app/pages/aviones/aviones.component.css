@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td,
+  th {
+    width: 25%;
+  }
+  
+  .sizes {
+    .p-inputtext {
+        display: block;
+        margin-bottom: .5rem;
+  
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+  }
+  
+  .p-field * {
+    display: block;
+  }
