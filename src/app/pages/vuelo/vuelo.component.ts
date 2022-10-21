@@ -19,9 +19,6 @@ export class VueloComponent implements OnInit {
 
   reserva = { sesion: {}, asientos: [] };
 
-  crearPase: any;
-  mostar: any;
-
   reservaFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -30,8 +27,7 @@ export class VueloComponent implements OnInit {
     fechaRequisicion: ['', Validators.required],
   }); */
 
-  pase: any;
-  usuario: any;
+  pase: Vuelo;
   vueloFormGroup: FormGroup;
   AprobacionForm: FormGroup;
   asientoForm: FormGroup;
@@ -173,15 +169,19 @@ export class VueloComponent implements OnInit {
     const pase = this.vueloFormGroup.value;
     const usuario = this.asientoForm.value;
 
-    this.pase = await this.service.getData<any>(this.service.BASE_URL_AEROPUERTO, `/vuelo/info/${23}/${'F3'}`).toPromise();
+    this.pase = await this.service.getData<any>(this.service.BASE_URL_AEROPUERTO, `/vuelo/info/${23}/${"'F3','F2'"}`).toPromise();
 
-
-
-    this.pase.origen = pase.origen;
-    this.pase.destino = pase.destino;
-    this.pase.horaSalida = pase.horaSalida;
-    this.pase.horaLlegada = pase.horaLlegada;
-    //this.usuario.ubicacionAsiento =this.crearPase.idVuelo + usuario.ubicacionAsiento;
+    /* this.pase.origen = boleto.nombrePasajero + " " + boleto.apellidoPasajero;
+    this.pase.numeroVuelo = boleto.numeroVuelo;
+    this.pase.numeroBoleto = "'N-'" + this.crearBoleto.idBoleto;
+    this.pase.numeroBoleto2 = boleto.numeroVuelo;
+    this.pase.horaAbordaje = moment(boleto.horaSalida).format('HH:mm');
+    this.pase.fechaAbordaje = moment(boleto.horaSalida).format('DDMMMM');
+    this.pase.horaAterrizaje = moment(boleto.horaLlegada).format('HH:mm');
+    this.pase.origenVuelo = this.boleto2.origenVuelo;
+    this.pase.destinoVuelo = this.boleto2.destinoVuelo;
+    this.pase.numeroAsiento = usuario.numeroAsiento; */
+    console.log('pase...',this.pase);
 
     setTimeout(() => {
       this.registroForm.onFinished(async () => {
