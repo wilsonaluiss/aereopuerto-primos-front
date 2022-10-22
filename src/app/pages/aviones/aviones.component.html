@@ -14,119 +14,7 @@
 
 
                 <!--ventana para agregar registro de aviones-->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticAdminLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <!--encabezado de ventana-->
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="staticAdminLabel">Agregar un Avion</h5>
 
-                                <!--inicion de campos para crear registro-->
-                                <div class="modal-body">
-                                    <!--inicio de formulario-->
-                                    <form class="was-validated" [formGroup]="informacionCreacionFormGroup">
-
-
-                                        <div class="mb-3 row">
-                                            <label for="text" class="col-sm-2 col-form-label">Nombre Avion</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="validationTextarea"
-                                                    formControlName="nombreAvion" placeholder="Nombre de avion"
-                                                    required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3 row">
-                                            <label for="text" class="col-sm-2 col-form-label">Numero de placa</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="validationTextarea"
-                                                    formControlName="noPlaca" placeholder="no. de placa" required="">
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="mb-3 row">
-                                            <label for="text" class="col-sm-2 col-form-label">Capacidad de
-                                                asientos</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="validationTextarea"
-                                                    formControlName="capacidadAsientos" placeholder="numero de asientos"
-                                                    required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3 row">
-                                            <label for="text" class="col-sm-2 col-form-label">Dimensiones</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="validationTextarea"
-                                                    formControlName="dimensiones" placeholder="dimensiones" required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3 row">
-                                            <label for="text" class="col-sm-2 col-form-label">aereolinea
-                                                asignada</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="validationTextarea"
-                                                    formControlName="idAereolinea" placeholder="Aereolinea" required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3 row">
-                                            <label for="text" class="col-sm-2 col-form-label">aereopuerto
-                                                asignado</label>
-                                            <div class="col-sm-10">
-                                                <mat-form-field appearance="fill">
-                                                    <mat-label>Aereopuertos disponibles</mat-label>
-                                                    <mat-select formControlName="idAereopuerto">
-                                                      <mat-option *ngFor="let listarNombreAereopuerto of listarNombreAereopuerto" [value]="listarNombreAereopuerto.id_aereopuerto" >
-                                                        {{listarNombreAereopuerto.nombre_aereopuerto}}
-                                                      </mat-option>
-                                                    </mat-select>
-                                                  </mat-form-field>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="mb-3 row">
-                                            <label for="inputPassword" class="col-sm-2 col-form-label">Estado</label>
-                                            <div class="col-sm-10">
-
-                                                <mat-slide-toggle color="primary" #estado class="margenObservaciones"
-                                                    formControlName="estadoAvion">
-
-                                                    {{estado.checked ? 'Activo' : 'Inactivo'}}
-
-                                                </mat-slide-toggle>
-
-
-                                            </div>
-                                        </div>
-
-
-
-                                    </form>
-                                </div>
-
-                                <!--botones de ventana emergente para guardar y cerrar-->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary"
-                                         (click)="guardarAviones()"
-                                        data-bs-dismiss="modal">Guardar
-                                        <!--Descubrir como putas hacer esto xD-->
-                                    </button>
-                                </div>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
@@ -165,6 +53,130 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticAdminLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!--encabezado de ventana-->
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticAdminLabel">Agregar un Avion</h5>
+            </div>
+            <!--inicion de campos para crear registro-->
+            <div class="modal-body">
+                <!--inicio de formulario-->
+                <form class="was-validated" [formGroup]="informacionCreacionFormGroup">
+
+
+                    <!-- <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">Nombre Avion</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="validationTextarea"
+                                formControlName="nombreAvion" placeholder="Nombre de avion" required="">
+                        </div>
+                    </div> -->
+
+                    <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">Numero de placa</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="validationTextarea" formControlName="noPlaca"
+                                placeholder="no. de placa" required="">
+                        </div>
+                    </div>
+
+
+
+                    <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">Capacidad de
+                            asientos</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="validationTextarea"
+                                formControlName="capacidadAsientos" placeholder="numero de asientos" required="">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">Dimensiones</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="validationTextarea"
+                                formControlName="dimensiones" placeholder="dimensiones" required="">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">aereolinea
+                            asignada</label>
+                        <div class="col-sm-10">
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Aereolineas disponibles</mat-label>
+                                <mat-select formControlName="idAereolinea">
+                                    <mat-option *ngFor="let listarNombreAereolinea of listarNombreAereolinea"
+                                        [value]="listarNombreAereolinea.id_aereolinea">
+                                        {{listarNombreAereolinea.nombre_aereolinea}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">aereopuerto
+                            asignado</label>
+                        <div class="col-sm-10">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Aereopuertos disponibles</mat-label>
+                                <mat-select formControlName="idAereopuerto">
+                                    <mat-option *ngFor="let listarNombreAereopuerto of listarNombreAereopuerto"
+                                        [value]="listarNombreAereopuerto.id_aereopuerto">
+                                        {{listarNombreAereopuerto.nombre_aereopuerto}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div> -->
+
+                    <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">aereopuerto
+                            asignado</label>
+                        <div class="col-sm-10">
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Aereopuertos disponibles</mat-label>
+                                <mat-select formControlName="idAereopuerto">
+                                    <mat-option *ngFor="let listarNombreAereopuerto of listarNombreAereopuerto"
+                                        [value]="listarNombreAereopuerto.id_aereopuerto">
+                                        {{listarNombreAereopuerto.nombre_aereopuerto}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Estado</label>
+                        <div class="col-sm-10">
+
+                            <mat-slide-toggle color="primary" #estado class="margenObservaciones"
+                                formControlName="estadoAvion">
+
+                                {{estado.checked ? 'Activo' : 'Inactivo'}}
+
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--botones de ventana emergente para guardar y cerrar-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="guardarAviones()" data-bs-dismiss="modal">Guardar
+                    <!--Descubrir como putas hacer esto xD-->
+                </button>
             </div>
         </div>
     </div>

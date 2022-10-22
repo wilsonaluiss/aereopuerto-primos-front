@@ -1,355 +1,209 @@
 <div class="container mt-4">
-    <mat-stepper [linear]="isLinear" #stepper>
-        <mat-step [stepControl]="reservaFormGroup">
-            <form [formGroup]="reservaFormGroup">
-                <ng-template matStepLabel>Reservar Vuelo</ng-template>
-                <!-- <mat-form-field appearance="fill">
+  <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="reservaFormGroup">
+      <form [formGroup]="reservaFormGroup">
+        <ng-template matStepLabel>Reservar Vuelo</ng-template>
+        <!-- <mat-form-field appearance="fill">
                     <mat-label>Name</mat-label>
                     <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
                 </mat-form-field> -->
-                <div>
-                    <button mat-raised-button matStepperNext>Reservar Vuelo</button>
-                </div>
-            </form>
-        </mat-step>
-        <!--Escoger destino-->
-        <mat-step [stepControl]="vueloFormGroup" label="Escoge tu destino">
-            <form [formGroup]="vueloFormGroup">
-                <div class="container col-10">
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Elige tu destino</mat-label>
-                                <input matInput formControlName="origen" placeholder="Elige tu destino" required>
-                            </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Aereopuerto Salida</mat-label>
-                                <input matInput formControlName="destino" placeholder="Aereopuerto de Salida" required>
-                            </mat-form-field>
-                        </div>
-                        <!-- <div class="col">
+
+        <div class="mb-3 row">
+          <div class="col-sm-10">
+            <label for="text" class="col-sm-2 col-form-label">Avion Disponible</label>
+            <mat-form-field appearance="legacy">
+              <mat-label>Avion Disponible</mat-label>
+              <mat-select formControlName="id_avion">
+                <mat-option *ngFor="let listarAviones of listarAviones" [value]="listarAviones.id_avion">
+                  {{listarAviones.no_placa}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button mat-raised-button matStepperNext>Reservar Vuelo</button>
+        </div>
+      </form>
+    </mat-step>
+    <!--Escoger destino-->
+    <mat-step [stepControl]="vueloFormGroup" label="Escoge tu destino">
+      <form [formGroup]="vueloFormGroup">
+        <div class="container col-10">
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>Elige tu destino</mat-label>
+                <input matInput formControlName="origen" placeholder="Elige tu destino" required>
+              </mat-form-field>
+            </div>
+            <div class="col">
+              <mat-form-field appearance="fill">
+                <mat-label>Aereopuerto Salida</mat-label>
+                <input matInput formControlName="destino" placeholder="Aereopuerto de Salida" required>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Aereopuerto llegada</mat-label>
                                 <input matInput formControlName="" placeholder="Aereopuerto de llegada" required>
                             </mat-form-field>
                         </div> -->
-                    </div>
+          </div>
 
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field appearance="legacy">
-                                <mat-label>Hora Salida</mat-label>
-                                <input matInput type="datetime-local" placeholder="start date"
-                                    formControlName="horaSalida">
-                            </mat-form-field>
-                        </div>
-                        <div class="col-6">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Fecha de llegada</mat-label>
-                                <input matInput type="datetime-local" [matDatepicker]="horaLlegada" formControlName="horaLlegada"
-                                    autocomplete="off" readonly>
-                                <mat-datepicker-toggle matSuffix [for]="horaLlegada"></mat-datepicker-toggle>
-                                <mat-datepicker #horaLlegada></mat-datepicker>
-                            </mat-form-field>
-                        </div>
-                    </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field appearance="legacy">
+                <mat-label>Hora Salida</mat-label>
+                <input matInput type="datetime-local" placeholder="start date" formControlName="horaSalida">
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Fecha de llegada</mat-label>
+                <input matInput type="datetime-local" [matDatepicker]="horaLlegada" formControlName="horaLlegada"
+                  autocomplete="off" readonly>
+                <mat-datepicker-toggle matSuffix [for]="horaLlegada"></mat-datepicker-toggle>
+                <mat-datepicker #horaLlegada></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
 
-                </div>
+        </div>
 
-                <div>
-                    <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
-                    <!-- <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button> -->
-                    <button mat-raised-button matStepperNext [disabled]="vueloFormGroup.invalid">Siguiente</button>
-                </div>
-            </form>
-        </mat-step>
-        <!--Vuelos disponibles-->
-        <mat-step [stepControl]="reservaFormGroup">
-            <form [formGroup]="reservaFormGroup">
-                <ng-template matStepLabel>Vuelos Disponibles</ng-template>
+        <div>
+          <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
+          <!-- <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button> -->
+          <button mat-raised-button matStepperNext [disabled]="vueloFormGroup.invalid">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <!--Vuelos disponibles-->
+    <mat-step [stepControl]="reservaFormGroup">
+      <form [formGroup]="reservaFormGroup">
+        <ng-template matStepLabel>Vuelos Disponibles</ng-template>
 
-                <mat-accordion multi>
-                    <mat-expansion-panel>
-                        <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*">
-                            <mat-panel-title class="centrado">
-                                <h3 class="text-sat font-weight-bold m-2">
-                                    test
-                                </h3>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-                        <div class="row mt-2">
-                            <div class="col-sm-4 p-3">
-                                <mat-card class="parent">
-                                    <div class="child">
-                                        <mat-icon>date_range</mat-icon>
-                                    </div>
-                                    <h3 class="font-weight-bold m-2">
-                                        Fecha de Salida
-                                    </h3>
-                                    <h4 class="mx-2">
-                                        12/12/2019
-                                    </h4>
-                                </mat-card>
-                            </div>
-                            <div class="col-sm-4 p-3">
-                                <mat-card class="parent">
-                                    <div class="child">
-                                        <mat-icon>date_range</mat-icon>
-                                    </div>
-                                    <h3 class="font-weight-bold m-2">
-                                        Fecha Llegada
-                                    </h3>
-                                    <h4 class="mx-2">
-                                        12/12/2019
-                                    </h4>
-                                </mat-card>
-                            </div>
-                            <div class="col-sm-4 p-3">
-                                <mat-card class="parent">
-                                    <div class="child">
-                                        <mat-icon>payments</mat-icon>
-                                    </div>
-                                    <h3 class="font-weight-bold m-2">
-                                        Precio
-                                    </h3>
-                                    <h4 class="mx-2">
-                                        Q2500.00
-                                    </h4>
-                                </mat-card>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 p-3">
-                                <mat-card class="parent">
-                                    <div class="child">
-                                        <mat-icon>flight_takeoff</mat-icon>
-                                    </div>
-                                    <h3 class="font-weight-bold m-2">
-                                        Aereolinea
-                                    </h3>
-                                    <h4 class="mx-2">
-                                        12/12/2019
-                                    </h4>
-                                </mat-card>
-                            </div>
-                        </div>
-                    </mat-expansion-panel>
-                </mat-accordion>
-
-
-                <div class="mt-4">
-                    <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
-
-                    <button mat-raised-button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                        Ver detalle
-                    </button>
-
-                    <button mat-raised-button matStepperNext>Seleccionar</button>
-                </div>
-            </form>
-            <!-- vuelo -->
-        </mat-step>
-        <mat-step [stepControl]="asientoForm" label="Informacion del vuelo">
-            <form [formGroup]="asientoForm">
-                <!-- <div class="container col-10">
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Seleccionar clase del vuelo</mat-label>
-                                <input matInput formControlName="destino" placeholder="Elige tu destino" required>
-                            </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Seleccionar asiento</mat-label>
-                                <input matInput formControlName="ubicacionAsiento" placeholder="Aereopuerto de Salida" required>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Cantidad de maletas</mat-label>
-                                <input matInput formControlName="" placeholder="Cantidad de maletas" required>
-                            </mat-form-field>
-                        </div>
-                        <div class="col">
-                            <mat-form-field appearance="fill">
-                                <mat-label>Total</mat-label>
-                                <input matInput formControlName="total" placeholder="Total" required>
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                </div> -->
-
-                <div class="row d-flex justify-content-center">
-                    <div>
-                      <fieldset>
-                        <legend>Elija su asiento:</legend>
-                        <div class="asiento-group">
-                          <table id="otro" type="checkbox" class="asientos-tab" cellpadding="1" cellspacing="1"
-                            height="278" width="700">
-                            <tbody>
-                              <tr>
-                                <td style="text-align: center;">
-                                </td>
-                                <td id="A" style="text-align: center;" class="cuadrante">A
-  
-                                  <div class='asientoLibre' id="asientoA0" (click)="asientoStatus($event)">1</div>
-                                </td>
-                                <td id="B" style="text-align: center;">B
-                                  <div class='asientoLibre' id="asientoB1" (click)="asientoStatus($event)">1</div>
-                                </td>
-                                <td id="C" style="text-align: center;"> C
-                                  <div class='asientoLibre' id="asientoC1" (click)="asientoStatus($event)">1</div>
-                                </td>
-                                <td id="D" style="text-align: center;">D
-                                  <div class='asientoLibre' id="asientoD1" (click)="asientoStatus($event)">1</div>
-                                </td>
-                                <td id="E" style="text-align: center;">E
-                                  <div class='asientoLibre' id="asientoE1" (click)="asientoStatus($event)">1</div>
-                                </td>
-                                <td id="F" style="text-align: center;">F
-                                  <div class='asientoLibre' id="asientoF1" (click)="asientoStatus($event)">1</div>
-                                </td>
-  
-                              </tr>
-                              <tr>
-                                <td style="text-align: center;">
-  
-                                </td>
-                                <td id="A" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoA2" (click)="asientoStatus($event)">2</div>
-                                </td>
-                                <td id="B" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoB2" (click)="asientoStatus($event)">2</div>
-                                </td>
-                                <td id="C" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoC2" (click)="asientoStatus($event)">2</div>
-                                </td>
-                                <td id="D" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoD2" (click)="asientoStatus($event)">2</div>
-                                </td>
-                                <td id="E" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoE2" (click)="asientoStatus($event)">2</div>
-                                </td>
-                                <td id="F" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoF2" (click)="asientoStatus($event)">2</div>
-                                </td>
-  
-                              </tr>
-                              <tr>
-                                <td style="text-align: center;">
-  
-                                </td>
-                                <td id="A" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoA3" (click)="asientoStatus($event)">3</div>
-                                </td>
-                                <td id="B" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoB3" (click)="asientoStatus($event)">3</div>
-                                </td>
-                                <td id="C" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoC3" (click)="asientoStatus($event)">3</div>
-                                </td>
-                                <td id="D" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoD3" (click)="asientoStatus($event)">3</div>
-                                </td>
-                                <td id="E" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoE3" (click)="asientoStatus($event)">3</div>
-                                </td>
-                                <td id="F" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoF3" (click)="asientoStatus($event)">3</div>
-                                </td>
-  
-                              </tr>
-                              <tr>
-                                <td style="text-align: center;">
-                                </td>
-                                <td id="A" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoA4" (click)="asientoStatus($event)">4</div>
-                                </td>
-                                <td id="B" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoB4" (click)="asientoStatus($event)">4</div>
-                                </td>
-                                <td id="C" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoC4" (click)="asientoStatus($event)">4</div>
-                                </td>
-                                <td id="D" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoD4" (click)="asientoStatus($event)">4</div>
-                                </td>
-                                <td id="E" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoE4" (click)="asientoStatus($event)">4</div>
-                                </td>
-                                <td id="F" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoF4" (click)="asientoStatus($event)">4</div>
-                                </td>
-  
-                              </tr>
-                              <tr>
-                                <td style="text-align: center;">
-                                </td>
-                                <td id="A" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoA5" (click)="asientoStatus($event)">5</div>
-                                </td>
-                                <td id="B" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoB5" (click)="asientoStatus($event)">5</div>
-                                </td>
-                                <td id="C" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoC5" (click)="asientoStatus($event)">5</div>
-                                </td>
-                                <td id="D" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoD5" (click)="asientoStatus($event)">5</div>
-                                </td>
-                                <td id="E" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoE5" (click)="asientoStatus($event)">5</div>
-                                </td>
-                                <td id="F" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoF5" (click)="asientoStatus($event)">5</div>
-                                </td>
-  
-                              </tr>
-                              <tr>
-                                <td style="text-align: center;">
-                                </td>
-                                <td id="A" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoA6" (click)="asientoStatus($event)">6</div>
-                                </td>
-                                <td id="B" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoB6" (click)="asientoStatus($event)">6</div>
-                                </td>
-                                <td id="C" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoC6" (click)="asientoStatus($event)">6</div>
-                                </td>
-                                <td id="D" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoD6" (click)="asientoStatus($event)">6</div>
-                                </td>
-                                <td id="E" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoE6" (click)="asientoStatus($event)">6</div>
-                                </td>
-                                <td id="F" style="text-align: center;">
-                                  <div class='asientoLibre' id="asientoF6" (click)="asientoStatus($event)">6</div>
-                                </td>
-  
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </fieldset>
-                    </div>
+        <mat-accordion multi>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header collapsedHeight="*" expandedHeight="*">
+              <mat-panel-title class="centrado">
+                <h3 class="text-sat font-weight-bold m-2">
+                  test
+                </h3>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row mt-2">
+              <div class="col-sm-4 p-3">
+                <mat-card class="parent">
+                  <div class="child">
+                    <mat-icon>date_range</mat-icon>
                   </div>
+                  <h3 class="font-weight-bold m-2">
+                    Fecha de Salida
+                  </h3>
+                  <h4 class="mx-2">
+                    12/12/2019
+                  </h4>
+                </mat-card>
+              </div>
+              <div class="col-sm-4 p-3">
+                <mat-card class="parent">
+                  <div class="child">
+                    <mat-icon>date_range</mat-icon>
+                  </div>
+                  <h3 class="font-weight-bold m-2">
+                    Fecha Llegada
+                  </h3>
+                  <h4 class="mx-2">
+                    12/12/2019
+                  </h4>
+                </mat-card>
+              </div>
+              <div class="col-sm-4 p-3">
+                <mat-card class="parent">
+                  <div class="child">
+                    <mat-icon>payments</mat-icon>
+                  </div>
+                  <h3 class="font-weight-bold m-2">
+                    Precio
+                  </h3>
+                  <h4 class="mx-2">
+                    Q2500.00
+                  </h4>
+                </mat-card>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 p-3">
+                <mat-card class="parent">
+                  <div class="child">
+                    <mat-icon>flight_takeoff</mat-icon>
+                  </div>
+                  <h3 class="font-weight-bold m-2">
+                    Aereolinea
+                  </h3>
+                  <h4 class="mx-2">
+                    12/12/2019
+                  </h4>
+                </mat-card>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-                <div>
-                    <button mat-raised-button class="mr-1 mt-3" matStepperPrevious>Regresar</button>
-                    <!-- <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button> -->
-                    <button mat-raised-button matStepperNext (click)="GuardarDatos(vueloFormGroup.value,stepper)" >Guardar</button>
-                </div>
-            </form>
-        </mat-step>
-    </mat-stepper>
+
+        <div class="mt-4">
+          <button mat-raised-button class="mr-1" matStepperPrevious>Regresar</button>
+
+          <button mat-raised-button data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Ver detalle
+          </button>
+
+          <button mat-raised-button matStepperNext>Seleccionar</button>
+        </div>
+      </form>
+      <!-- vuelo -->
+    </mat-step>
+    <mat-step [stepControl]="asientoForm" label="Informacion del vuelo">
+      <form [formGroup]="asientoForm">
+        <div class="row d-flex justify-content-center">
+          <div>
+            <fieldset>
+              <legend>Elija su asiento:</legend>
+              <div class="asiento-group">
+                <table id="otro" type="checkbox" class="asientos-tab" cellpadding="1" cellspacing="1" height="278"
+                  width="700">
+                  <tbody>
+                    <tr *ngFor="let fila of filas; let i = index">
+
+                      <td style="text-align: center;">
+
+                      </td>
+
+                      <td *ngFor="let opcion of columna; let j = index;" style="text-align: center;">
+
+                        <div  class='asientoLibre' [attr.id]="i + j*filas.length" (click)="asientoStatus($event)">
+
+                          {{(i+1) + j*filas.length}}</div>
+
+                      </td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <div>
+          <button mat-raised-button class="mr-1 mt-3" matStepperPrevious>Regresar</button>
+          <!-- <button mat-raised-button class="mr-1" (click)="stepper.reset()">Reset</button> -->
+          <button mat-raised-button matStepperNext (click)="GuardarDatos(vueloFormGroup.value,stepper)">Guardar</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
 </div>
 
 
@@ -358,20 +212,20 @@
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Datos</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Ok</button>
-            </div>
-        </div>
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Datos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Ok</button>
+      </div>
     </div>
+  </div>
 </div>

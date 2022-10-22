@@ -7,6 +7,8 @@ import * as moment from 'moment';
 import { ServiceService } from 'src/app/services/service.service';
 import { Vuelo } from 'src/app/clases/Vuelo';
 import { PaseComponent } from './pase/pase.component';
+import { AvionesService } from 'src/app/services/aviones.service';
+import { nombreAereopuerto, nombreAvion } from 'src/app/clases/aviones';
 declare var $: any;
 @Component({
   selector: 'app-vuelo',
@@ -18,6 +20,8 @@ export class VueloComponent implements OnInit {
   @ViewChild('registroForm') registroForm?: PaseComponent | any;
 
   reserva = { sesion: {}, asientos: [] };
+
+  listarAviones: nombreAvion[] = [];
 
   reservaFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -37,7 +41,13 @@ export class VueloComponent implements OnInit {
   isLinear = false;
   isEditable = true;
 
-  constructor(private _formBuilder: FormBuilder, private spinner: NgxSpinnerService, private service: ServiceService) { 
+  columna: any[] = [];
+
+  filas: any[] = [];
+
+  asientos: any = 50;
+  constructor(private _formBuilder: FormBuilder, private spinner: NgxSpinnerService, private service: ServiceService,
+    private avionesServicio: AvionesService) { 
     this.vueloFormGroup = new FormGroup({
       origen: new FormControl('', [Validators.required]),
       destino: new FormControl('', [Validators.required]),
@@ -46,6 +56,9 @@ export class VueloComponent implements OnInit {
       /* costoAsientos: new FormControl('', [Validators.required]), */
     });
 
+    this.reservaFormGroup = new FormGroup({
+      id_avion: new FormControl('', [Validators.required]),
+    });
 
     this.asientoForm = new FormGroup({
       ubicacionAsiento: new FormControl('', [Validators.required]),
@@ -60,6 +73,22 @@ export class VueloComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.traerAvion();
+    for (let index = 1; index < 7; index++) {
+
+      this.columna.push(index);    
+
+    }
+    console.log(this.asientos/6)
+
+    for (let index = 0; index <  this.asientos/6; index++) {
+
+      this.filas.push(index);    
+
+    }
+    this.service.getData<any[]>(this.service.BASE_URL_AEROPUERTO, '/aviones/listarAviones').toPromise().then(data => {
+      console.log('listar aviones',data);
+    });
     
   }
 
@@ -83,7 +112,7 @@ export class VueloComponent implements OnInit {
         estadoVuelo: "Activo",
         usuarioCrea: "luis",
         usuarioModifica:  "luis",
-        idAvion: 1,
+        idAvion: this.reservaFormGroup.get('id_avion').value,
         idTripulacion: 3,
         ubicacionAsiento: this.reserva.asientos.map((item) => item.group + item.value),
         asientos: asientos,
@@ -209,4 +238,10 @@ export class VueloComponent implements OnInit {
     }, 1000)
   }
 
+  traerAvion() {
+    this.avionesServicio.traerAvion().subscribe(nombreAvion => {
+      this.listarAviones = nombreAvion;
+      console.log(this.listarAviones, "estos son los aviones: ")
+    })
+  }
 }

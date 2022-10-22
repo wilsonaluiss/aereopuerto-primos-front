@@ -75,3 +75,9 @@
   border-color: #a6b9e2;
   cursor: pointer;
 }
+
+::ng-deep .mat-horizontal-stepper-header{
+
+  pointer-events: none !important;
+
+}
