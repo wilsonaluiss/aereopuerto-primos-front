@@ -13,11 +13,12 @@ export class PasajeroComponent implements OnInit {
  asientosLista: asientos[];
 
 
- displayedColumns: string[];
+ displayedColumns: string[]=  ['A', 'B'];;
   
  dataSource = new MatTableDataSource()
  informacionCreacionFormGroup: FormGroup;
 
+ 
   constructor(private asientoServicio:AsientosService,
     private formBuilder: FormBuilder) {
       this.informacionCreacionFormGroup = this.formBuilder.group({
@@ -36,7 +37,6 @@ export class PasajeroComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.displayedColumns=['A','B'],
     this.hacerMatriz(1)
   }
 
@@ -44,23 +44,23 @@ export class PasajeroComponent implements OnInit {
 
   
   hacerMatriz(id:number){
-    this.displayedColumns = ['A', 'B', 'C', 'D'];
+
     this.asientoServicio.obtenerListaAsientos(id).subscribe(Asientos => {
       this.asientosLista=Asientos;
 
-      const asientos = []
+      const sillas = []
       var iterador = 0;
-      for (let f = 0; f < (this.asientosLista.length / 4); f++) {
+      for (let f = 0; f < (this.asientosLista.length / 2); f++) {
 
-        asientos[f] = {}
-        for (let c = 0; c < 4; c++) {
-          asientos[f][c] = this.asientosLista[iterador]
+        sillas[f] = {}
+        for (let c = 0; c < 2; c++) {
+          sillas[f][c] = this.asientosLista[iterador]
           iterador++;
         }
       }
 
 
-      this.dataSource.data = asientos;
+      this.dataSource.data = sillas;
       
       console.log( this.dataSource.data)
     })
