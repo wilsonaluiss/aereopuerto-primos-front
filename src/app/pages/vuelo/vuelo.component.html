@@ -9,17 +9,7 @@
                 </mat-form-field> -->
 
         <div class="mb-3 row">
-          <div class="col-sm-10">
-            <label for="text" class="col-sm-2 col-form-label">Avion Disponible</label>
-            <mat-form-field appearance="legacy">
-              <mat-label>Avion Disponible</mat-label>
-              <mat-select formControlName="id_avion">
-                <mat-option *ngFor="let listarAviones of listarAviones" [value]="listarAviones.id_avion">
-                  {{listarAviones.no_placa}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
+       
         </div>
         <div>
           <button mat-raised-button matStepperNext>Reservar Vuelo</button>
