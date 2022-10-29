@@ -1,8 +1,12 @@
 export class Vuelo {
-  origen: string;
+  idVuelo:number;
   destino: string;
-  horaSalida: string;
-  horaLlegada: string;
-  costoAsientos: string;
-  ubicacionAsiento: string;
+  fechaSalida: Date;
+  fechaLlegada: Date;
+  costoAsientos: number;
+  estadoVuelo: string;
+  usuarioCrea: string;
+  usuarioModifica:string;
+  idAvion:number;
+  idTripulacion:number
 }

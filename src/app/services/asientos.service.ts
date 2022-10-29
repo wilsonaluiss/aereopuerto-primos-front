@@ -16,6 +16,11 @@ obtenerListaAsientos(idAvion:number): Observable<asientos[]> {
   return this.httpClient.get<asientos[]>(`${this.baseURL}/traerAsiento/${idAvion}`);
 }
 
+crearAsientos(cantidadAsientos:number, idAvion?:number, Asiento?:asientos): Observable<asientos> {
+  return this.httpClient.post<asientos>(`${this.baseURL}/crearAsiento/${idAvion}/${cantidadAsientos}`,Asiento);
+}
+
+
 
 
 

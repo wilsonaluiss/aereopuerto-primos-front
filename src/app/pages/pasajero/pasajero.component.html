@@ -17,7 +17,33 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
 
+              <table class="table table-hover">
+                <thead>
+                    <tr>
+                        
+                        <th>Destino</th>
+                        <th>Costo asientos</th>
+                        <th>fecha de salida</th>
+                        <th>fecha de llegada</th>
+                        <th>acciones</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let listarVuelos of listarVuelos">
+                        
+                        <th>{{listarVuelos.destino}}</th>
+                        <th>{{listarVuelos.costoAsientos}}</th>
+                        <th>{{listarVuelos.fechaSalida}}</th>
+                        <th>{{listarVuelos.fechaLlegada}}</th>
 
+                        <th>{{listarVuelos.fechaLlegada}}</th>
+                        <button (click)="hacerMatriz(listarVuelos.idAvion)"></button>
+
+
+                    </tr>
+                </tbody>
+            </table>
               
 
 
@@ -44,6 +70,17 @@
                     <td mat-cell *matCellDef="let element"> <button> {{element[1].nombre_asiento}}</button> </td>
                   </ng-container>
                     
+                  <ng-container matColumnDef="C">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element"> <button> {{element[2].nombre_asiento}}</button> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="D">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element"> <button> {{element[3].nombre_asiento}}</button> </td>
+                  </ng-container>
+
+
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>

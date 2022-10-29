@@ -4,6 +4,8 @@ import { AvionesService } from 'src/app/services/aviones.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
+import { AsientosService } from 'src/app/services/asientos.service';
+import { asientos } from 'src/app/clases/asientos';
 
 @Component({
   selector: 'app-aviones',
@@ -15,13 +17,14 @@ export class AvionesComponent implements OnInit {
 
   listarAviones: tablaAviones[];
   listarNombreAereopuerto: nombreAereopuerto[] = [];
-  listarNombreAereolinea: nombreAereoLinea[] = [];
+  listarNombreAereolinea: nombreAereoLinea[] = [];  
 
   informacionCreacionFormGroup: FormGroup;
 
   constructor(private avionesServicio: AvionesService,
     private formBuilder: FormBuilder,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    private asientoServicio: AsientosService) {
 
     this.informacionCreacionFormGroup = this.formBuilder.group({
 
@@ -71,6 +74,20 @@ limpiarFormulario() {
     console.log(nuevoAvion);
     this.limpiarFormulario();
     this.avionesServicio.crearAvion(nuevoAvion).toPromise().then(AVION => {
+
+      const Asiento:asientos={
+        id_asiento: 0,
+        nombre_asiento: '',
+        id_avion: 0,
+        id_estado: 0
+      }
+      this.asientoServicio.crearAsientos(this.informacionCreacionFormGroup.get('capacidadAsientos').value,AVION?.id_avion, Asiento).toPromise().then(dato =>{
+        Swal.fire({
+          titleText: `Se ha almacenado la información con éxito.`
+        })
+      })
+
+      
       Swal.fire({
         titleText: `Se ha almacenado la información con éxito.`,
         icon: 'success',

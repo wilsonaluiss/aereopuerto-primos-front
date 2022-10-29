@@ -5,7 +5,6 @@ import { PasajeroComponent } from './pasajero/pasajero.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
-import { VueloComponent } from './vuelo/vuelo.component';
 import { AdministracionComponent } from './administracion/administracion.component';
 import { AereopuertosComponent } from './aereopuertos/aereopuertos.component';
 import { AereolineasComponent } from './aereolineas/aereolineas.component';
@@ -16,7 +15,8 @@ import { ServiceService } from '../services/service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { PaseComponent } from './vuelo/pase/pase.component';
+import { VueloComponent } from './vuelo/vuelo.component';
+
 
 
 
@@ -25,12 +25,12 @@ import { PaseComponent } from './vuelo/pase/pase.component';
     DashboardComponent,
     PasajeroComponent,
     PagesComponent,
-    VueloComponent,
     AdministracionComponent,
     AereopuertosComponent,
     AereolineasComponent,
     AvionesComponent,
-    PaseComponent,
+    VueloComponent
+
   ],
   imports: [
     CommonModule,
@@ -47,7 +47,7 @@ import { PaseComponent } from './vuelo/pase/pase.component';
   exports: [
     DashboardComponent,
     PasajeroComponent,
-    VueloComponent
+ 
   ],
   providers: [ServiceService],
 })

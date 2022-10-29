@@ -3,6 +3,9 @@ import { asientos } from 'src/app/clases/asientos';
 import { AsientosService } from 'src/app/services/asientos.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { Vuelo } from 'src/app/clases/Vuelo';
+import { VueloService } from 'src/app/services/vuelo.service';
+
 
 @Component({
   selector: 'app-pasajero',
@@ -11,16 +14,17 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 })
 export class PasajeroComponent implements OnInit {
  asientosLista: asientos[];
+listarVuelos: Vuelo[];
 
-
- displayedColumns: string[]=  ['A', 'B'];;
+ displayedColumns: string[]=  ['A', 'B','C','D'];;
   
  dataSource = new MatTableDataSource()
  informacionCreacionFormGroup: FormGroup;
 
  
   constructor(private asientoServicio:AsientosService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private vueloSevicios: VueloService) {
       this.informacionCreacionFormGroup = this.formBuilder.group({
 
         idBoleto:[null, Validators.required],
@@ -37,7 +41,8 @@ export class PasajeroComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.hacerMatriz(1)
+   
+    this.traerVuelos()
   }
 
   isLinear:false
@@ -50,10 +55,10 @@ export class PasajeroComponent implements OnInit {
 
       const sillas = []
       var iterador = 0;
-      for (let f = 0; f < (this.asientosLista.length / 2); f++) {
+      for (let f = 0; f < (this.asientosLista.length / 4); f++) {
 
         sillas[f] = {}
-        for (let c = 0; c < 2; c++) {
+        for (let c = 0; c < 4; c++) {
           sillas[f][c] = this.asientosLista[iterador]
           iterador++;
         }
@@ -67,9 +72,17 @@ export class PasajeroComponent implements OnInit {
   }
   
 
-
+traerVuelos(){
+  this.vueloSevicios.obtenerListaVuelos().subscribe(Vuelos =>{
+    this.listarVuelos=Vuelos;
+    console.log(this.listarVuelos, "estos son los vuelos",Vuelos)
+  })
+}
   
 
+seleccionarAvion(idAvion:number){
+console.log(idAvion)
+}
 
 
 
