@@ -34,20 +34,20 @@
                           <th>fecha de llegada</th>
                           <th>costo de asientos</th>
                           <th>estado de vuelo</th>
-                          <th>id de avion</th>
+                          <th>placa avion</th>
                           <th>id de tripulacion</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr *ngFor="let listarVuelos of listarVuelos">
-                        <th>{{listarVuelos.idVuelo}}</th>
+                        <th>{{listarVuelos.id_vuelo}}</th>
                         <th>{{listarVuelos.destino}}</th>
-                        <th>{{listarVuelos.fechaSalida}}</th>
-                        <th>{{listarVuelos.fechaLlegada}}</th>
-                        <th>{{listarVuelos.costoAsientos}}</th>
-                        <th>{{listarVuelos.estadoVuelo}}</th>
-                        <th>{{listarVuelos.idAvion}}</th>
-                        <th>{{listarVuelos.idTripulacion}}</th>
+                        <th>{{listarVuelos.fecha_salida}}</th>
+                        <th>{{listarVuelos.fecha_llegada}}</th>
+                        <th>{{listarVuelos.costo_asientos}}</th>
+                        <th>{{listarVuelos.estado_vuelo}}</th>
+                        <th>{{listarVuelos.no_placa}}</th>
+                        <th>{{listarVuelos.id_tripulacion}}</th>
 
                       </tr>
                   </tbody>

@@ -79,9 +79,9 @@ export class VueloComponent implements OnInit {
       showConfirmButton: false
     });
 
-
-
   }
+
+  
 
 
 }
