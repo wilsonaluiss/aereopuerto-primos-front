@@ -21,6 +21,11 @@ obtenerListaVuelos(): Observable<Vuelo[]> {
 }
 
 
+traerVueloFecha( fechaSalida:string): Observable<any[]>{
+return this.httpClient.get<any[]>(`${this.baseURL}/obtenerFecha/${fechaSalida}`);
+}
+
+
 
 
 }

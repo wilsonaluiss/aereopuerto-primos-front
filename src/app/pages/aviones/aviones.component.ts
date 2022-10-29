@@ -74,14 +74,15 @@ limpiarFormulario() {
     console.log(nuevoAvion);
     this.limpiarFormulario();
     this.avionesServicio.crearAvion(nuevoAvion).toPromise().then(AVION => {
-
-      const Asiento:asientos={
-        id_asiento: 0,
+      console.log(AVION);
+      
+      const Asiento:any={
+        
         nombre_asiento: '',
-        id_avion: 0,
-        id_estado: 0
+        id_avion: AVION.id_avion,
+        id_estado: 1
       }
-      this.asientoServicio.crearAsientos(this.informacionCreacionFormGroup.get('capacidadAsientos').value,AVION?.id_avion, Asiento).toPromise().then(dato =>{
+      this.asientoServicio.crearAsientos(AVION.capacidad_asientos,AVION.id_avion, Asiento).toPromise().then(dato =>{
         Swal.fire({
           titleText: `Se ha almacenado la información con éxito.`
         })

@@ -1,5 +1,5 @@
-import { Timestamp } from "rxjs-compat";
-import * as internal from "stream";
+
+
 
 export class boleto{
     id_no_boleto: number;

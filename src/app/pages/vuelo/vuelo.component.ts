@@ -54,7 +54,7 @@ export class VueloComponent implements OnInit {
       fechaSalida:this.informacionCreacionFormGroup.get('fechaSalida').value,
       fechaLlegada:this.informacionCreacionFormGroup.get('fechaLlegada').value,
       costoAsientos:this.informacionCreacionFormGroup.get('costoAsientos').value,
-      estadoVuelo: this.informacionCreacionFormGroup.get('estadoVuelo').value,
+      estadoVuelo: this.informacionCreacionFormGroup.get('estadoVuelo').value ? 'creado' : 'Inactivo',
       usuarioCrea:'luis',
       usuarioModifica:'luis',
       idAvion:this.informacionCreacionFormGroup.get('idAvion').value,

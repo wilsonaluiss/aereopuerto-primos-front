@@ -8,12 +8,12 @@
               <div class="row my-3 col-2">
                   <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                       data-bs-target="#staticBackdrop">
-                      Agregar
+                      Agregar Vuelo
                   </button>
               </div>
 
 
-              <!--ventana para agregar registro de aviones-->
+              
 
 
 
@@ -67,6 +67,7 @@
             </div>
 
             <div class="modal-body">
+              
               <form class="was-validated" [formGroup]="informacionCreacionFormGroup">
 
 
@@ -75,7 +76,7 @@
                   <label for="text" class="col-sm-2 col-form-label">Destino</label>
                   <div class="col-sm-10">
                       <input type="text" class="form-control" id="validationTextarea" formControlName="destino"
-                          placeholder="Origen" required="">
+                          placeholder="destino" required="">
                   </div>
               </div>
 
@@ -86,36 +87,79 @@
               <div class="col">
                 <mat-form-field appearance="legacy">
                   <mat-label>fecha Salida</mat-label>
-                  <input matInput type="datetime-local" placeholder="start date" formControlName="fechaSalida">
+                  <input matInput type="date" placeholder="start date" formControlName="fechaSalida">
                 </mat-form-field>
               </div>
             </div>
 
-            <div class="row">
+            <div class="col-6">
               <div class="col">
                 <mat-form-field appearance="legacy">
                   <mat-label>fecha Llegada</mat-label>
-                  <input matInput type="datetime-local" placeholder="start date" formControlName="fechaLlegada">
+                  <input matInput type="date" placeholder="start date" formControlName="fechaLlegada">
                 </mat-form-field>
               </div>
             </div>
 
 
             <div class="mb-3 row">
-              <label for="text" class="col-sm-2 col-form-label">Costo del vuelo</label>
+              <label for="text" class="col-sm-2 col-form-label">Costo de Asiento</label>
               <div class="col-sm-10">
-                  <input type="text" class="form-control" id="validationTextarea" formControlName="Q."
-                      placeholder="costoAsientos" required="">
+                  <input type="text" class="form-control" id="validationTextarea" formControlName="costoAsientos"
+                      placeholder="Q." required="">
               </div>
           </div>
 
+          
+
+          <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Estado</label>
+            <div class="col-sm-10">
+
+                <mat-slide-toggle color="primary" #estado class="margenObservaciones"
+                    formControlName="estadoVuelo">
+
+                    {{estado.checked ? 'creado' : 'Inactivo'}}
+
+                </mat-slide-toggle>
+
+
+            </div>
+        </div>
+
             
+
+        <div class="mb-3 row">
+          <label for="text" class="col-sm-2 col-form-label">id De avion</label>
+          <div class="col-sm-10">
+              <input type="text" class="form-control" id="validationTextarea" formControlName="idAvion"
+                  placeholder="avion" required="">
+          </div>
+      </div>
+
+
+      <div class="mb-3 row">
+        <label for="text" class="col-sm-2 col-form-label">id De tripulacion</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="validationTextarea" formControlName="idTripulacion"
+                placeholder="tripulacion" required="">
+        </div>
+    </div>
+
 
 
 
 
               </form>
             </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" (click)="crearVuelo()" data-bs-dismiss="modal">Guardar
+                  
+              </button>
+          </div>
+
 
 
 
