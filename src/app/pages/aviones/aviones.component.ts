@@ -22,7 +22,6 @@ export class AvionesComponent implements OnInit {
   constructor(private avionesServicio: AvionesService,
     private formBuilder: FormBuilder,
     private spinner: NgxSpinnerService) {
-
     this.informacionCreacionFormGroup = this.formBuilder.group({
 
       noPlaca: [null, Validators.required],
