@@ -123,7 +123,7 @@ export class AdministracionComponent implements OnInit {
           showCloseButton: true,
           showConfirmButton: false
         });
-      });
+      }); 
     } catch (error) {
       console.log(error);
       this.spinner.hide();

@@ -15,8 +15,10 @@ import { ServiceService } from '../services/service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { VueloComponent } from './vuelo/vuelo.component';
+import { VueloComponent } from './vuelo/vuelo.component'; 
 
+
+import { TripulacionComponent } from './tripulacion/tripulacion.component';
 
 
 
@@ -29,8 +31,9 @@ import { VueloComponent } from './vuelo/vuelo.component';
     AereopuertosComponent,
     AereolineasComponent,
     AvionesComponent,
-    VueloComponent
-
+    VueloComponent,
+    TripulacionComponent
+    
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,43 @@
+<div class="card border">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <form class="was-validated" [formGroup]="tripulacionFormGroup">
+
+                    <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">Usuario</label>
+                        <div class="col-sm-10">
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Usuarios Disponibles</mat-label>
+                                <mat-select formControlName="usuario">
+                                    <mat-option *ngFor="let usuarios of usuarios"
+                                        [value]="usuarios.idUsuario">
+                                        {{usuarios.nombreUsuario}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="text" class="col-sm-2 col-form-label">Aereolinea</label>
+                        <div class="col-sm-10">
+                            <mat-form-field appearance="legacy">
+                                <mat-label>Aereolinea Disponible</mat-label>
+                                <mat-select formControlName="aereolinea">
+                                    <mat-option *ngFor="let aereolineas of aereolineas"
+                                        [value]="aereolineas.id_aereolinea">
+                                        {{aereolineas.nombre_aereolinea}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+
+                <button type="button" class="btn btn-primary" (click)="agregarTripulacion()">Agregar
+                    tripulacion</button>
+            </div>
+        </div>
+    </div>
+</div>

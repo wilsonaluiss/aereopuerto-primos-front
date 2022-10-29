@@ -9,6 +9,7 @@ import { AereolineasComponent } from './aereolineas/aereolineas.component';
 import { AereopuertosComponent } from './aereopuertos/aereopuertos.component';
 import { AvionesComponent } from './aviones/aviones.component';
 import { VueloComponent } from './vuelo/vuelo.component';
+import { TripulacionComponent } from './tripulacion/tripulacion.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path: 'aereolineas', component: AereolineasComponent, data: { titulo: 'Aereolineas' } },
       { path: 'aereopuertos', component: AereopuertosComponent, data: { titulo: 'Aereopuertos' } },
       { path: 'aviones', component: AvionesComponent, data: { titulo: 'Aviones' } },
-      {path: 'vuelo', component: VueloComponent, data:{titulo: 'vuelo'}}
+      {path: 'vuelo', component: VueloComponent, data:{titulo: 'vuelo'}},
+      { path: 'tripulacion', component: TripulacionComponent, data: {titulo: 'Tripulacion'} },
     ]
   },
 ];
